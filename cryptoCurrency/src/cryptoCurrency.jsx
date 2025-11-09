@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function CryptoCurrency() {
-
+    const [cryptoPrice, setCryptoPrice] = useState('');
 
     useEffect(() => {
         const fetchData = async() => {
@@ -25,13 +25,15 @@ function CryptoCurrency() {
             const data = await response.json();
 
             console.log(data);
+
+            setCryptoPrice(data.symbols[0].last);
         }
         fetchData();
     },[]);
 
     return(
         <>
-            <p></p>
+            <p>{cryptoPrice}</p>
         </>
     );
 }
