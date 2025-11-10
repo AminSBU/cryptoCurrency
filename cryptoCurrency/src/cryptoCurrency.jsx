@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './cryptoCurrency.css'
 
 function CryptoCurrency() {
     const [cryptoPrice, setCryptoPrice] = useState('');
@@ -28,7 +29,7 @@ function CryptoCurrency() {
             console.log(data);
 
             // Take only items 0–100 (or fewer if not available)
-            const first100 = data.result.slice(0, 2001);
+            const first100 = data.result.slice(0, 100);
             console.log(first100);
             setCryptoList(first100);
         }
@@ -42,9 +43,12 @@ function CryptoCurrency() {
                 {cryptoList.map((crypto, index) => (
                     <li key={crypto.symbol || index}>
                         <strong>{index + 1}. {crypto.symbol}</strong> — {crypto.name}
+                        <p className={`icon cryptoCoin ${crypto.symbol.toLowerCase()}`}></p>
                     </li>
                 ))}
             </ul>
+
+            <p class="icon cryptoCoin btc"></p>
         </>
     );
 }
